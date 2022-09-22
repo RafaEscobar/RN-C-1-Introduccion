@@ -1,14 +1,23 @@
+// Creamos interfaz principal para (persona)
+interface Persona{
+    nombre: String;
+    edad: Number;
+    direccion: Direccion;
+}
+// Creamos interfaz para el objeto literal anidado (direccion)
+interface Direccion{
+    pais: String;
+    casaNo: Number;
+}
 
 export const ObjetosLiterales = () => {
-
-    const persona1 = {
+    // Objeto literal (persona)
+    const persona: Persona = {
         nombre: 'Rafael',
         edad: 21,
-        profesion: 'Estudiante',
         direccion: {
-            calle: 'Calzada San Angelin',
+            pais: 'Toluca',
             casaNo: 9,
-            localidad: 'Toluca'
         }
     }
 
@@ -18,7 +27,7 @@ export const ObjetosLiterales = () => {
         <h3>Objetos Literales</h3>
         <code>
             <pre>
-                {JSON.stringify(persona1, null, 3)}
+                {JSON.stringify(persona, null, 3)}
             </pre>
         </code>
     </>
