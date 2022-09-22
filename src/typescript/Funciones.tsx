@@ -2,7 +2,7 @@
 
 export const Funciones = () => {
     const suma = (a:number,b:number):number =>{
-        return (200/10);
+        return (a/b);
     }
   return (
     <>
