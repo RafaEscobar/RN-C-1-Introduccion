@@ -1,13 +1,13 @@
 // Creamos interfaz principal para (persona)
 interface Persona{
-    nombre: String;
-    edad: Number;
+    nombre: string;
+    edad: number;
     direccion: Direccion;
 }
 // Creamos interfaz para el objeto literal anidado (direccion)
 interface Direccion{
-    pais: String;
-    casaNo: Number;
+    pais: string;
+    casaNo: number;
 }
 
 export const ObjetosLiterales = () => {
