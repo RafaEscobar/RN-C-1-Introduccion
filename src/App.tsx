@@ -14,7 +14,7 @@ const App = () => {
       {/* <TiposBasicos /> */}
       {/* <ObjetosLiterales /> */}
       {/* <Funciones /> */}
-    {/* <Contador /> */}
+      {/* <Contador /> */}
     <Contador_useCounter />
 
     </div>
