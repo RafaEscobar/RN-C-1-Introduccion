@@ -3,7 +3,9 @@
 // import { Funciones } from "./typescript/Funciones";
 // import { Contador } from "./components/Contador";
 // import { Contador_useCounter } from './components/Contador_useCounter';
-import { Login } from "./components/login";
+
+import { Login } from "./components/Login";
+
 
 const App = () => {
   return (
