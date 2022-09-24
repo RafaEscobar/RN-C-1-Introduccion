@@ -3,8 +3,10 @@
 // import { Funciones } from "./typescript/Funciones";
 // import { Contador } from "./components/Contador";
 // import { Contador_useCounter } from './components/Contador_useCounter';
+// import { Login } from "./components/Login";
 
-import { Login } from "./components/Login";
+import { Usuarios } from "./components/Usuarios";
+
 
 
 const App = () => {
@@ -17,7 +19,8 @@ const App = () => {
       {/* <Funciones /> */}
       {/* <Contador /> */}
       {/* <Contador_useCounter /> */}
-      <Login />
+      {/* <Login /> */}
+      <Usuarios />
 
     </div>
   )
