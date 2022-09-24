@@ -1,18 +1,39 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { reqResApi } from '../api/reqRes';
+import { ReqResInterface, Usuario } from '../interfaces/resRes';
 
 
 export const Usuarios = () => {
 
+    const [usuarios, setUsuarios] = useState<Usuario[]>([]);
+
     useEffect(() => {
       // Llamado a la API
-        reqResApi.get('/users')
+        reqResApi.get<ReqResInterface>('/users')
             .then( resp => {
-                console.log( resp.data );
+                setUsuarios( resp.data.data );
             })
             .catch( err => console.log( err ) );
     }, [])
     
+    const renderRow = ( {id, email, first_name, last_name, avatar}: Usuario ) => {
+        return (
+            <tr key={ id.toString() }>
+                <td>
+                    <img 
+                        src= { avatar }
+                        alt= { first_name } 
+                        style = {{
+                            width: 30,
+                            borderRadius: 100,
+                        }}
+                    />
+                </td>
+                <td> { first_name } {last_name} </td>
+                <td> { email } </td>
+            </tr>
+        )
+    }
 
   return (
     <>
@@ -26,9 +47,9 @@ export const Usuarios = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    
-                </tr>
+                {
+                    usuarios.map( renderRow )
+                }
             </tbody>
         </table>
     </>
