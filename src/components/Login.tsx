@@ -20,8 +20,16 @@ const initialState:AuthState = {
     nombre: '',
 }
 
+// F) Generamos el type externo para la gestion del username y el nombre
+type LoginPayload = {
+    username: string,
+    nombre: string,
+}
+
 // C) Generamos la accion con un TYPE, y establecemos el 'type' como 'logout'
-type AuthAction = { type: 'logout' };
+type AuthAction = 
+    | { type: 'logout' } 
+    | { type: 'login', payload: LoginPayload };
 
 // D) GENERAMOS LA FUNCION REDUCER SIGUIENDO LA SINTAXIS GUIA:
 // const nomFuncion = (state: tipoInterfazState, action: tipoAccion): tipoInterfazState =>
@@ -41,6 +49,15 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
             }
         break;
         
+        case 'login':
+            const {username, nombre} = action.payload;
+            return { 
+                validando: false,
+                token: 'acceso1',
+                username: username,
+                nombre: nombre,
+            }
+        
         /*
          Esto es opcional pero por recomendacion siempre deberiamos retornar
          el 'estado' oseace ==> el -state-
@@ -54,6 +71,22 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
 export const Login = () => {
 
     const [state, dispatch] = useReducer(authReducer, initialState);
+
+    const login_btn = (nom: string, usern:string) =>{
+        dispatch({
+            type: 'login',
+            payload: {
+                username: usern,
+                nombre: nom,
+            }
+        })
+    }
+
+    const logout_btn = () => {
+        dispatch({
+            type: 'logout'
+        });
+    }
 
     // 1) Hasta este punto se sigue mostrando el -Validando...-
     /*
@@ -84,11 +117,27 @@ export const Login = () => {
   return (
     <>
         <h3>Login</h3>
-        <div className="alert alert-danger">NO AUTENTICADO...</div>
-        <div className="alert alert-success">AUTENTICADO...</div>
+        {/* 
+            Generamos el condicional con el operador ternario para mostrara 
+            el mensaje -Autenticado como:- SI HAY ALGO EN TOKEN, y -NO autenticado-
+            SI NO HAY NADA EN TOKEN == esto en razon de: state.token
+        */}
+        {
+            ( state.token )
+                ? <div className="alert alert-success">Autenticado como: { state.nombre } </div>
+                : <div className="alert alert-danger">NO AUTENTICADO...</div>
+        }
+        {/* 
+            Generamos el condicional con el operador ternario para mostrara 
+            el btn -Logout:- SI HAY ALGO EN TOKEN, y -Login- SI NO HAY NADA EN TOKEN 
+            == esto en razon de: state.token
+        */}
+        {
+            ( state.token )
+                ? <button className="btn btn-danger" onClick={ logout_btn }>Logout</button>
+                : <button className="btn btn-primary" onClick={()=> login_btn('Rafa', 'Rafita01') }>Login</button>
+        }
 
-        <button className="btn btn-primary">Login</button> &nbsp;
-        <button className="btn btn-danger">Logout</button>
     </>
   )
 }
