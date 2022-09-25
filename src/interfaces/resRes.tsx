@@ -1,4 +1,4 @@
-
+// Interfaz ReqResInterface
 export interface ReqResInterface {
     page:        number;
     per_page:    number;
@@ -12,7 +12,7 @@ export interface ReqResInterface {
     data:        Usuario[];
     support:     Support;
 }
-
+// Interfaz Usuario
 export interface Usuario {
     id:         number;
     email:      string;
